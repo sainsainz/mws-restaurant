@@ -83,7 +83,7 @@ class DBHelper {
   }
 
   /**
-   * Fetch restaurants by a cuisine and a neighborhood with proper error handling.通过一个烹饪和附近的社区来获取正确的错误处理。
+   * Fetch restaurants by a cuisine and a neighborhood with proper error handling.通过餐厅类型和街区信息来获取一个餐馆的。
    */
   static fetchRestaurantByCuisineAndNeighborhood(cuisine, neighborhood, callback) {
     // Fetch all restaurants 获取所有的餐馆
@@ -92,19 +92,19 @@ class DBHelper {
         callback(error, null);
       } else {
         let results = restaurants
-        if (cuisine != 'all') { // filter by cuisine 过滤菜单
+        if (cuisine != 'all') { // filter by cuisine 过滤返回当前选中的餐厅类型
           results = results.filter(r => r.cuisine_type == cuisine);
         }
-        if (neighborhood != 'all') { // filter by neighborhood 过滤邻居
+        if (neighborhood != 'all') { // filter by neighborhood 过滤返回当前选中的街区信息
           results = results.filter(r => r.neighborhood == neighborhood);
         }
-        callback(null, results);
+        callback(null, results);//返回一个符合餐厅类型和街区信息的数组组合
       }
     });
   }
 
   /**
-   * Fetch all neighborhoods with proper error handling.通过正确的错误处理来获取所有的邻居。
+   * Fetch all neighborhoods with proper error handling.通过正确的错误处理来获取所有的街区。
    */
   static fetchNeighborhoods(callback) {
     // Fetch all restaurants 获取所有的餐馆

@@ -5,7 +5,7 @@ var map
 var markers = []
 
 /**
- * Fetch neighborhoods and cuisines as soon as the page is loaded.在页面加载的时候获取邻居和菜单
+ * Fetch neighborhoods and cuisines as soon as the page is loaded.在页面加载的时候获取街区信息和餐馆类型
  */
 document.addEventListener('DOMContentLoaded', (event) => {
   fetchNeighborhoods();
@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
 });
 
 /**
- * Fetch all neighborhoods and set their HTML.获取所有邻居并设置html
+ * Fetch all neighborhoods and set their HTML.获取所有街区信息并将值传入fillNeighborhoodsHTML（）
  */
 fetchNeighborhoods = () => {
   DBHelper.fetchNeighborhoods((error, neighborhoods) => {
@@ -27,7 +27,7 @@ fetchNeighborhoods = () => {
 }
 
 /**
- * Set neighborhoods HTML. 设置邻居html
+ * Set neighborhoods HTML. 将街区信息逐条传入select中，形成下拉列表
  */
 fillNeighborhoodsHTML = (neighborhoods = self.neighborhoods) => {
   const select = document.getElementById('neighborhoods-select');
@@ -40,7 +40,7 @@ fillNeighborhoodsHTML = (neighborhoods = self.neighborhoods) => {
 }
 
 /**
- * Fetch all cuisines and set their HTML.获取所有菜单并且设置html
+ * Fetch all cuisines and set their HTML.fillCuisinesHTML（）获取所有餐馆类型并将值传入fillNeighborhoodsHTML（）
  */
 fetchCuisines = () => {
   DBHelper.fetchCuisines((error, cuisines) => {
@@ -54,7 +54,7 @@ fetchCuisines = () => {
 }
 
 /**
- * Set cuisines HTML.设置餐带html
+ * Set cuisines HTML.将餐馆类型逐条传入select中，形成下拉列表
  */
 fillCuisinesHTML = (cuisines = self.cuisines) => {
   const select = document.getElementById('cuisines-select');
@@ -68,7 +68,7 @@ fillCuisinesHTML = (cuisines = self.cuisines) => {
 }
 
 /**
- * Initialize Google map, called from HTML.初始化谷歌地图，从HTML调用。
+ * Initialize Google map, called from HTML.初始化谷歌地图
  */
 window.initMap = () => {
   let loc = {
@@ -93,8 +93,8 @@ updateRestaurants = () => {
   const cIndex = cSelect.selectedIndex;
   const nIndex = nSelect.selectedIndex;
 
-  const cuisine = cSelect[cIndex].value;
-  const neighborhood = nSelect[nIndex].value;
+  const cuisine = cSelect[cIndex].value;//当前选中的餐厅类型值
+  const neighborhood = nSelect[nIndex].value;//当前选中的街区类型值
 
   DBHelper.fetchRestaurantByCuisineAndNeighborhood(cuisine, neighborhood, (error, restaurants) => {
     if (error) { // Got an error!
@@ -112,13 +112,13 @@ updateRestaurants = () => {
 resetRestaurants = (restaurants) => {
   // Remove all restaurants 删除所有餐厅
   self.restaurants = [];
-  const ul = document.getElementById('restaurants-list');
-  ul.innerHTML = '';
+  const ul = document.getElementById('restaurants-list');//从页面上获取ul列表
+  ul.innerHTML = '';//清空目前所有的ul子元素
 
   // Remove all map markers 删除所有地图标记
   self.markers.forEach(m => m.setMap(null));
   self.markers = [];
-  self.restaurants = restaurants;
+  self.restaurants = restaurants;//令self.restaurants 等于当前选中项目筛选出来的数组
 }
 
 /**
@@ -133,7 +133,7 @@ fillRestaurantsHTML = (restaurants = self.restaurants) => {
 }
 
 /**
- * Create restaurant HTML.创建餐厅页面
+ * Create restaurant HTML.创建餐厅的信息页面
  */
 createRestaurantHTML = (restaurant) => {
   const li = document.createElement('li');
@@ -170,6 +170,7 @@ addMarkersToMap = (restaurants = self.restaurants) => {
   restaurants.forEach(restaurant => {
     // Add marker to the map
     const marker = DBHelper.mapMarkerForRestaurant(restaurant, self.map);
+    //为marker标记添加点击事件，跳转到marker标记的url地址。
     google.maps.event.addListener(marker, 'click', () => {
       window.location.href = marker.url
     });
