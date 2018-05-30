@@ -5,7 +5,7 @@ var map
 var markers = []
 
 /**
- * Fetch neighborhoods and cuisines as soon as the page is loaded.
+ * Fetch neighborhoods and cuisines as soon as the page is loaded.在页面加载的时候获取邻居和菜单
  */
 document.addEventListener('DOMContentLoaded', (event) => {
   fetchNeighborhoods();
@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
 });
 
 /**
- * Fetch all neighborhoods and set their HTML.
+ * Fetch all neighborhoods and set their HTML.获取所有邻居并设置html
  */
 fetchNeighborhoods = () => {
   DBHelper.fetchNeighborhoods((error, neighborhoods) => {
@@ -27,7 +27,7 @@ fetchNeighborhoods = () => {
 }
 
 /**
- * Set neighborhoods HTML.
+ * Set neighborhoods HTML. 设置邻居html
  */
 fillNeighborhoodsHTML = (neighborhoods = self.neighborhoods) => {
   const select = document.getElementById('neighborhoods-select');
@@ -40,7 +40,7 @@ fillNeighborhoodsHTML = (neighborhoods = self.neighborhoods) => {
 }
 
 /**
- * Fetch all cuisines and set their HTML.
+ * Fetch all cuisines and set their HTML.获取所有菜单并且设置html
  */
 fetchCuisines = () => {
   DBHelper.fetchCuisines((error, cuisines) => {
@@ -54,7 +54,7 @@ fetchCuisines = () => {
 }
 
 /**
- * Set cuisines HTML.
+ * Set cuisines HTML.设置餐带html
  */
 fillCuisinesHTML = (cuisines = self.cuisines) => {
   const select = document.getElementById('cuisines-select');
@@ -68,7 +68,7 @@ fillCuisinesHTML = (cuisines = self.cuisines) => {
 }
 
 /**
- * Initialize Google map, called from HTML.
+ * Initialize Google map, called from HTML.初始化谷歌地图，从HTML调用。
  */
 window.initMap = () => {
   let loc = {
@@ -84,7 +84,7 @@ window.initMap = () => {
 }
 
 /**
- * Update page and map for current restaurants.
+ * Update page and map for current restaurants. 更新当前地图上的餐厅
  */
 updateRestaurants = () => {
   const cSelect = document.getElementById('cuisines-select');
@@ -107,22 +107,22 @@ updateRestaurants = () => {
 }
 
 /**
- * Clear current restaurants, their HTML and remove their map markers.
+ * Clear current restaurants, their HTML and remove their map markers.删除所有餐厅删除所有地图标记
  */
 resetRestaurants = (restaurants) => {
-  // Remove all restaurants
+  // Remove all restaurants 删除所有餐厅
   self.restaurants = [];
   const ul = document.getElementById('restaurants-list');
   ul.innerHTML = '';
 
-  // Remove all map markers
+  // Remove all map markers 删除所有地图标记
   self.markers.forEach(m => m.setMap(null));
   self.markers = [];
   self.restaurants = restaurants;
 }
 
 /**
- * Create all restaurants HTML and add them to the webpage.
+ * Create all restaurants HTML and add them to the webpage.创建所有餐厅页面并添加到页面上
  */
 fillRestaurantsHTML = (restaurants = self.restaurants) => {
   const ul = document.getElementById('restaurants-list');
@@ -133,7 +133,7 @@ fillRestaurantsHTML = (restaurants = self.restaurants) => {
 }
 
 /**
- * Create restaurant HTML.
+ * Create restaurant HTML.创建餐厅页面
  */
 createRestaurantHTML = (restaurant) => {
   const li = document.createElement('li');
@@ -164,7 +164,7 @@ createRestaurantHTML = (restaurant) => {
 }
 
 /**
- * Add markers for current restaurants to the map.
+ * Add markers for current restaurants to the map.在地图上添加当前餐厅的标记。
  */
 addMarkersToMap = (restaurants = self.restaurants) => {
   restaurants.forEach(restaurant => {
