@@ -1,18 +1,46 @@
 @charset "utf-8";
 /* CSS Document */
-
-/* 定义网格容器，设置容器的宽度 */
-.grid-container {
-  width: 100%;
+*, *::before, *::after {
+  box-sizing: border-box;
 }
+@media all and (max-device-width: 600px) {
+  .rwd-grid {
+    display: grid;
+    width: 100%;
+    grid-template-areas: "header" "map" "info" "footer";
+    grid-template-columns: 100%;
+    background-color: yellow;
+  }
+  nav{background-color: yellow}
+}
+@media all and (min-device-width: 601px) {
+  .rwd-grid {
+    display: grid;
+    width:100%;
+    grid-template-areas:"header header"
+    "info map"
+    "footer .";
+    grid-template-columns: 60%;
+    background-color: red;
+  }
 
-@media all and (max-device-width:800px){
-  .col-1{ width: 100%;}
-  .col-2{ width: 100%;}
-  .col-3{ width: 90%;}
-  .col-4{ width: 100%;}
-  .col-5{ width: 100%;}
-  .col-6{ width: 100%;}
+  nav{background-color: red}
+}
+.rwd-header {
+  grid-area: header;
+}
+.rwd-map {
+  grid-area: map;
+  height: auto;
+  overflow: hidden;
+}
+.rwd-info {
+  grid-area: info;
+  height: auto;
+  overflow: hidden;
+}
+.rwd-footer {
+  grid-area: footer;
 }
 
 body,td,th,p{
@@ -52,6 +80,7 @@ article, aside, canvas, details, figcaption, figure, footer, header, hgroup, men
 #maincontent {
   background-color: #f3f3f3;
   min-height: 100%;
+  width: 100%;
 }
 #footer {
   background-color: #444;
@@ -67,7 +96,7 @@ article, aside, canvas, details, figcaption, figure, footer, header, hgroup, men
 nav {
   width: 100%;
   height: 7rem;
-  background-color: #252831;
+ /* background-color: #252831;*/
   text-align:center;
 }
 nav h1 {
