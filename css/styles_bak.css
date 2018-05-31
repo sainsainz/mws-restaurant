@@ -1,20 +1,6 @@
 @charset "utf-8";
 /* CSS Document */
 
-/* 定义网格容器，设置容器的宽度 */
-.grid-container {
-  width: 100%;
-}
-
-@media all and (max-device-width:800px){
-  .col-1{ width: 100%;}
-  .col-2{ width: 100%;}
-  .col-3{ width: 90%;}
-  .col-4{ width: 100%;}
-  .col-5{ width: 100%;}
-  .col-6{ width: 100%;}
-}
-
 body,td,th,p{
 	font-family: Arial, Helvetica, sans-serif;
 	font-size: 10pt;
@@ -66,7 +52,7 @@ article, aside, canvas, details, figcaption, figure, footer, header, hgroup, men
 /* ====================== Navigation ====================== */
 nav {
   width: 100%;
-  height: 7rem;
+  height: 80px;
   background-color: #252831;
   text-align:center;
 }
@@ -75,9 +61,7 @@ nav h1 {
 }
 nav h1 a {
   color: #fff;
-  /*font-size: 14pt;*/
-  font-size: 3rem;
-  line-height: 7rem;
+  font-size: 14pt;
   font-weight: 200;
   letter-spacing: 10px;
   text-transform: uppercase;
@@ -88,12 +72,11 @@ nav h1 a {
     background-color: #eee;
     font-size: 17px;
     margin: 0;
-    /*width: calc(50% - 80px);*/
+    width: calc(50% - 80px);
 }
 
 /* Display list items side by side */
 #breadcrumb li {
-  font-size: 3rem;
     display: inline;
 }
 
@@ -106,7 +89,6 @@ nav h1 a {
 
 /* Add a color to all links inside the list */
 #breadcrumb li a {
-  font-size: 3rem;
     color: #0275d8;
     text-decoration: none;
 }
@@ -210,12 +192,11 @@ nav h1 a {
 }
 .inside #map-container {
   background: blue none repeat scroll 0 0;
-  height: 40rem;
-  margin-top:13rem;
-  /*height: 87%;
+  height: 87%;
   position: fixed;
+  right: 0;
   top: 80px;
-  width: 50%;*/
+  width: 50%;
 }
 .inside #map {
   background-color: #ccc;
@@ -225,17 +206,12 @@ nav h1 a {
 .inside #footer {
   bottom: 0;
   position: absolute;
-  /*width: 50%
-   padding: 25px 40px;*/
-  font-size: 2rem;
-  padding: 25px 5%;
-
+  width: 50%;
 }
 #restaurant-name {
   color: #f18200;
   font-family: Arial,sans-serif;
-  font-size: 3rem;
-  /*font-size: 20pt;*/
+  font-size: 20pt;
   font-weight: 200;
   letter-spacing: 0;
   margin: 15px 0 30px;
@@ -243,9 +219,7 @@ nav h1 a {
   line-height: 1.1;
 }
 #restaurant-img {
-  /*width: 90%;*/
-  width: 100%;
-  border-radius: 4rem 0;
+	width: 90%;
 }
 #restaurant-address {
   font-size: 12pt;
@@ -261,24 +235,20 @@ nav h1 a {
   padding: 2px 0;
   text-align: center;
   text-transform: uppercase;
-  /*width: 90%;*/
-  width: 100%;
+	width: 90%;
 }
 #restaurant-container, #reviews-container {
   border-bottom: 1px solid #d9d9d9;
   border-top: 1px solid #fff;
-  /* padding: 140px 40px 30px;
-   width: 50%;*/
-  padding: 140px 5% 30px;
+  padding: 140px 40px 30px;
+  width: 50%;
 }
 #reviews-container {
-  /* padding: 30px 40px 80px;*/
-  padding: 140px 5% 130px;
+  padding: 30px 40px 80px;
 }
 #reviews-container h2 {
   color: #f58500;
-  /*font-size: 24pt;*/
-  font-size: 4rem;
+  font-size: 24pt;
   font-weight: 300;
   letter-spacing: -1px;
   padding-bottom: 1pt;
@@ -294,43 +264,9 @@ nav h1 a {
   list-style-type: none;
   margin: 0 0 30px;
   overflow: hidden;
-
+  padding: 0 20px 20px;
   position: relative;
-
-  /*
   width: 85%;
-   padding: 0 20px 20px;
-   border-radius: 15px 5px;
-  */
-  border-radius: 4rem 0;
-}
-#reviews-list li p:first-child {
-  background-color: #202020;
-  font-size: 3rem;
-  line-height: 8rem;
-  color: #fff;
-  text-indent: 4rem;
-}
-#reviews-list li p:nth-child(2) {
-  position: absolute;
-  right: 3rem;
-  top: 0;
-  font-size: 2rem;
-  line-height: 8rem;
-  color: #848484;
-}
-#reviews-list li p:nth-child(3){
-  padding: 5px 20px;
-  background-color: #f3a61a;
-  line-height: 3rem;
-  font-size: 2rem;
-  margin: 1rem 4rem;
-  color: #fff;
-  width: 20%;
-}
-#reviews-list li p:nth-child(4){
-  font-size: 1.5rem;
-  margin: 2rem 4rem 4rem 4rem;
 }
 #reviews-list li p {
   margin: 0 0 10px;

@@ -9,9 +9,9 @@
   <title>Restaurant Info</title>
 </head>
 
-<body class="inside">
+<body class="inside grid-container">
   <!-- Beginning header -->
-  <header>
+  <header class="col-1">
     <!-- Beginning nav -->
     <nav>
       <h1><a href="/">Restaurant Reviews</a></h1>
@@ -26,14 +26,14 @@
   <!-- End header -->
 
   <!-- Beginning main -->
-  <main id="maincontent">
+  <main id="maincontent" class="col-1">
     <!-- Beginning map -->
-    <section id="map-container">
+    <section id="map-container" class="col-2">
       <div id="map"></div>
     </section>
     <!-- End map -->
     <!-- Beginning restaurant -->
-    <section id="restaurant-container">
+    <section id="restaurant-container" class="col-3">
       <h1 id="restaurant-name"></h1>
       <img id="restaurant-img">
       <p id="restaurant-cuisine"></p>
@@ -42,7 +42,7 @@
     </section>
     <!-- end restaurant -->
     <!-- Beginning reviews -->
-    <section id="reviews-container">
+    <section id="reviews-container" class="col-3">
       <ul id="reviews-list"></ul>
     </section>
     <!-- End reviews -->
@@ -50,7 +50,7 @@
   <!-- End main -->
 
   <!-- Beginning footer -->
-  <footer id="footer">
+  <footer id="footer" class="col-3">
     Copyright (c) 2017 <a href="/"><strong>Restaurant Reviews</strong></a> All Rights Reserved.
   </footer>
   <!-- End footer -->
@@ -61,7 +61,7 @@
   <!-- Main javascript file -->
   <script type="text/javascript" src="js/restaurant_info.js"></script>
   <!-- Google Maps -->
-  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA_tKbW6A5pQ-eupxI56myUnHLqYCzOjKo&libraries=places&callback=initMap"></script>
+  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBBxnLlsaYvzcL882cxo78WMoloNpTDg-8&libraries=places&callback=initMap"></script>
   <!-- End scripts -->
 
 </body>
