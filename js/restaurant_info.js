@@ -1,6 +1,7 @@
 let restaurant;
 var map;
-
+let a=0;
+var myScroll = new IScroll('#wrapper');
 /**
  * Initialize Google map, called from HTML.
  */
@@ -110,6 +111,7 @@ fillReviewsHTML = (reviews = self.restaurant.reviews) => {
     ul.appendChild(createReviewHTML(review));
   });
   container.appendChild(ul);
+    myScroll.refresh();
 }
 
 /**
