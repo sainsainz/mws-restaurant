@@ -1,21 +1,35 @@
 var staticCacheName = 'mws-static-v1';
+var _cache;
 console.log("check")
 self.addEventListener('install', function(event) {
-    /*event.waitUntil(
+    event.waitUntil(
         caches.open(staticCacheName).then(function(cache) {
+            _cache=cache;
             return cache.addAll([
                 '/',
                 'js/main.js',
-                'css/main.css',
-                'imgs/icon.png',
-                'https://fonts.gstatic.com/s/roboto/v15/2UX7WLTfW3W8TclTUvlFyQ.woff',
-                'https://fonts.gstatic.com/s/roboto/v15/d-6IYplOFocCacKzxwXSOD8E0i7KZn-EPnyo3HZu7kw.woff'
+                'js/dbhelper.js',
+                'js/iscroll.js',
+                'js/restaurant_info.js',
+                'css/styles.css',
+                'img/1.jpg',
+                'img/2.jpg',
+                'img/3.jpg',
+                'img/4.jpg',
+                'img/5.jpg',
+                'img/6.jpg',
+                'img/7.jpg',
+                'img/8.jpg',
+                'img/9.jpg',
+                'img/10.jpg',
+                'data/restaurants.json'
             ]);
         })
-    );*/
+    );
 });
 
 self.addEventListener('activate', function(event) {
+    console.log()
     /*event.waitUntil(
         caches.keys().then(function(cacheNames) {
             return Promise.all(
@@ -31,10 +45,22 @@ self.addEventListener('activate', function(event) {
 });
 
 self.addEventListener('fetch', function(event) {
-    console.log(event)
-    /*event.respondWith(
-        caches.match(event.request).then(function(response) {
-            return response || fetch(event.request);
+    console.log(event.request);
+    event.respondWith(
+        caches.match(event.request)
+        .then(function(response) {
+           if(response.url)console.log(response.url,"matchOK")
+            if(response){
+               return response;
+            }
         })
-    );*/
+        .catch(function (response) {
+            console.log(response)
+            fetch(event.request).then(function (response_2) {
+                console.log(response_2);
+                _cache.put(event.request,response_2);
+                return response_2
+            })
+        })
+    );
 });

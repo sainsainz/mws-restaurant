@@ -4,12 +4,46 @@ let restaurants,
 var map
 var markers = []
 
+
+let _registerServiceWorker = function() {
+    if (!navigator.serviceWorker) return;
+
+    var indexController = this;
+
+    navigator.serviceWorker.register('/sw.js').then(function(reg) {
+        if (!navigator.serviceWorker.controller) {
+            return;
+        }
+
+        if (reg.waiting) {
+
+            return;
+        }
+
+        if (reg.installing) {
+
+            return;
+        }
+
+        reg.addEventListener('updatefound', function() {
+
+        });
+    }).catch(function(error) {
+        // registration failed
+        console.log('Registration failed with ' + error);
+    });
+};
+
+
+
+
 /**
  * Fetch neighborhoods and cuisines as soon as the page is loaded.在页面加载的时候获取街区信息和餐馆类型
  */
 document.addEventListener('DOMContentLoaded', (event) => {
   fetchNeighborhoods();
   fetchCuisines();
+  _registerServiceWorker();
 });
 
 /**
