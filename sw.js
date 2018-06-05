@@ -7,6 +7,7 @@ self.addEventListener('install', function(event) {
             _cache=cache;
             return cache.addAll([
                 '/',
+                'restaurant.html',
                 'js/main.js',
                 'js/dbhelper.js',
                 'js/iscroll.js',
@@ -45,22 +46,35 @@ self.addEventListener('activate', function(event) {
 });
 
 self.addEventListener('fetch', function(event) {
-    console.log(event.request);
-    event.respondWith(
-        caches.match(event.request)
-        .then(function(response) {
-           if(response.url)console.log(response.url,"matchOK")
-            if(response){
-               return response;
-            }
-        })
-        .catch(function (response) {
-            console.log(response)
-            fetch(event.request).then(function (response_2) {
-                console.log(response_2);
-                _cache.put(event.request,response_2);
-                return response_2
-            })
-        })
-    );
-});
+    //console.log(event.request);
+    let checkURL=event.request.url.indexOf("maps.googleapis.com");
+    if(!event.request.url)console.log(event.request);
+    //if(checkURL==-1) {
+        event.respondWith(
+            caches.match(event.request)
+                .then(function (response) {
+                    //if (response.url) console.log(response.url, "matchOK")
+                    if (response) {
+                        return response;
+                    }
+                })
+                .catch(function (response) {
+                    console.log(response)
+                    if(checkURL==-1){
+                        fetch(event.request).then(function (response_2) {
+                            //console.log(response_2);
+                            _cache.put(event.request, response_2);
+                            return response_2
+                        })
+                    }else{
+                        fetch(event.request,{mode:'no-cors'}).then(function (response_3) {
+                           // console.log(response_3);
+                            _cache.put(event.request, response_3);
+                            return response_3
+                        })
+                    }
+
+                })
+        )
+    //}
+})
