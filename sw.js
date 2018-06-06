@@ -44,72 +44,35 @@ self.addEventListener('activate', function(event) {
 });
 let requestNum=0;
 self.addEventListener('fetch', function(event) {
-    //console.log(event.request)
     requestNum++;
     let modetype;
     if(event.request.url.indexOf(".html")==-1){
-    event.respondWith(
-        caches.match(event.request).then(function (response_cache) {
-            console.log("back",response_cache,event.request.url);
-            if(response_cache){
-                return response_cache;
-            }
-            else{
-
-                if(event.request.url.indexOf("https://maps.gstatic.com")==0 ||
-                    event.request.url.indexOf("https://maps.googleapis.com")==0 ||
-                    event.request.url.indexOf("https://fonts.googleapis.com")==0){
-                    modetype='no-cors';
-                }else{
-                    modetype='cors';
-                }
-                console.log("没找到重新去下载",modetype);
-                return fetch(event.request,{mode:modetype}).then(function (response) {
-                    caches.open(staticCacheName)
-                        .then(function(cache) {
-                            console.log("save",response.type,event.request.url);
-                            cache.put(event.request, response);
-
-                        });
-                    return response.clone();
-                });
-            }
-        })
-    );
-    }
-
-
-    /*let checkURL=event.request.url.indexOf("fonts.gstatic.com");
-    let checkURL2=event.request.url.indexOf("maps.googleapis.com");
-    if(event.request.url.indexOf("https://maps.googleapis.com/maps/api/js/QuotaService")==0 ||
-        event.request.url.indexOf("https://maps.googleapis.com/maps/api/js/ViewportInfoService")==0
-    ){
-        console.log("other")
-        return fetch(event.request);
-    }else{
         event.respondWith(
-            caches.match(event.request)
-                .then(function (response) {
-                    console.log("back",response.type,event.request.url);
-                    return response;
-                })
-                .catch(function () {
-                    let modes;
-                    if(checkURL!=-1 ||checkURL2!=-1){
-                        modes='no-cors';
+            caches.match(event.request).then(function (response_cache) {
+                console.log("back",response_cache,event.request.url);
+                if(response_cache){
+                    return response_cache;
+                }
+                else{
+                    if(event.request.url.indexOf("https://maps.gstatic.com")==0 ||
+                        event.request.url.indexOf("https://maps.googleapis.com")==0 ||
+                        event.request.url.indexOf("https://fonts.googleapis.com")==0){
+                        modetype='no-cors';
                     }else{
-                        modes='cors';
+                        modetype='cors';
                     }
-                    fetch(event.request,{mode:modes})
-                        .then(function (response_2) {
-                            console.log("load",response_2.type,event.request.url);
-                            caches.open(staticCacheName)
-                                .then(function(cache) {
-                                    cache.put(event.request, response_2);
-                                });
-                            return response_2.clone();
-                        })
-                })
-        )
-    }*/
+                    console.log("没找到重新去下载",modetype);
+                    return fetch(event.request,{mode:modetype}).then(function (response) {
+                        caches.open(staticCacheName)
+                            .then(function(cache) {
+                                console.log("save",response.type,event.request.url);
+                                cache.put(event.request, response);
+
+                            });
+                        return response.clone();
+                    });
+                }
+            })
+        );
+    }
 })
