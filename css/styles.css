@@ -135,7 +135,7 @@
 }
 .rwd-info {
   grid-area: info;
-  overflow: hidden;
+  overflow: scroll;
 }
 .rwd-footer {
   grid-area: footer;
@@ -330,14 +330,15 @@ nav h1 {
   background-color: orange;
   border-bottom: 3px solid #eee;
   color: #fff;
-  display: inline-block;
-/*font-size: 1.4rem;*/
- font-size: 10pt;
-  margin: 15px 0 0;
+  display: block;
+  /* font-size: 1.4rem; */
+  font-size: 10pt;
+  margin: 0 auto;
   padding: 8px 30px 10px;
   text-align: center;
   text-decoration: none;
   text-transform: uppercase;
+  width: max-content;;
 }
 
 /* ====================== Restaurant Details ====================== */

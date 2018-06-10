@@ -1,7 +1,7 @@
 let restaurant;
 var map;
 let a=0;
-var myScroll = new IScroll('#wrapper');
+//var myScroll = new IScroll('#wrapper');
 /**
  * Initialize Google map, called from HTML.
  */
@@ -120,7 +120,7 @@ fillReviewsHTML = (reviews = self.restaurant.reviews) => {
     ul.appendChild(createReviewHTML(review));
   });
   container.appendChild(ul);
-    myScroll.refresh();
+   // myScroll.refresh();
 }
 
 /**
@@ -158,6 +158,7 @@ fillBreadcrumb = (restaurant=self.restaurant) => {
   const breadcrumb = document.getElementById('breadcrumb');
   const li = document.createElement('li');
   li.innerHTML = restaurant.name;
+  li.setAttribute('aria-current',"page")
   breadcrumb.appendChild(li);
 }
 

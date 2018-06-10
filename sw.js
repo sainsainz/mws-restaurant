@@ -46,7 +46,7 @@ let requestNum=0;
 self.addEventListener('fetch', function(event) {
     requestNum++;
     let modetype;
-    if(event.request.url.indexOf(".html")==-1){
+    if(event.request.url.indexOf(".html")==-1 && event.request.url.indexOf("https://maps.googleapis.com")==-1){
         event.respondWith(
             caches.match(event.request).then(function (response_cache) {
                 console.log("back",response_cache,event.request.url);
@@ -55,7 +55,6 @@ self.addEventListener('fetch', function(event) {
                 }
                 else{
                     if(event.request.url.indexOf("https://maps.gstatic.com")==0 ||
-                        event.request.url.indexOf("https://maps.googleapis.com")==0 ||
                         event.request.url.indexOf("https://fonts.googleapis.com")==0){
                         modetype='no-cors';
                     }else{
@@ -74,5 +73,7 @@ self.addEventListener('fetch', function(event) {
                 }
             })
         );
+    }else{
+        return fetch(event.request)
     }
 })
