@@ -7,7 +7,7 @@
   float: left;
   min-width: 1px;
 }
-@media all and (max-device-width: 600px) {
+@media all and (max-width: 600px) {
   .rwd-grid {
     margin-top: 10rem;
     display: grid;
@@ -44,7 +44,7 @@
     text-transform: uppercase;
   }
 }
-@media all and (min-device-width: 601px) and (max-device-width: 864px){
+@media all and (min-width: 601px) and (max-width: 864px){
   .rwd-grid {
     margin-top: 10rem;
     display: grid;
@@ -84,7 +84,7 @@
   }
 }
 
-@media all and (min-device-width: 865px){
+@media all and (min-width: 865px){
   .rwd-grid {
     margin-top: 10rem;
     display: grid;
@@ -99,7 +99,7 @@
     width: 16.66%;
   }
   .col-2 {
-    width: calc(32vw - 30px)
+    width: calc(32vw - 40px)
   }
   .col-3 {
     width: 50%;
