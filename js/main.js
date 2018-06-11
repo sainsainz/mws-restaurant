@@ -43,7 +43,7 @@ let _registerServiceWorker = function() {
 document.addEventListener('DOMContentLoaded', (event) => {
   fetchNeighborhoods();
   fetchCuisines();
-  //_registerServiceWorker();
+  _registerServiceWorker();
 });
 
 /**
